@@ -1,16 +1,16 @@
 // Enemies
-var Enemy = function() {
+var Enemy = function(x,y) {
     // Variables applied to each Enemy instance
-    this.x = 20;
-    this.y = 200;
+    this.x = x;
+    this.y = y;
     //object track rate ---I don't think I need this.
-    this.speed = '0';
+    //this.speed = '0';
     // The image/sprite for our enemies
     this.sprite = 'images/enemy-bug.png';
     //Make more bugs???maybe I don't need either of these
     //since my bug is still moving. 
     //I just need to make them random and moving in 
-    //different directions. need x and y somewhere else
+    //different directions. 
     //allEnemies.push(this);
     //return this;//is this neededd
 }; 
@@ -29,9 +29,21 @@ Enemy.prototype.update = function(dt) {
 
         Then, you want to probably have something else that creates
         more bugs.*/
+        //generating random numbers between 1 and 99
+        ///something - Math.floor(Math.random() * 100);
 
-        x = this.x++ * (dt); //maybe get rid of () on the dt
-        y = this.y * (dt);
+        //https://www.geeksforgeeks.org/javascript-math-random-function/
+        //https://www.geeksforgeeks.org/javascript-math-random-function/
+        //https://addyosmani.com/resources/essentialjsdesignpatterns/book/#revealingmodulepatternjavascript
+
+        // var min=4; 
+        // var max=5; 
+        // var random =Math.floor(Math.random() * (+max - +min)) + +min; 
+        // document.write('some string or something else' + random ); 
+
+        //makes one bug move x and y incremented.
+        this.x++ * (dt); 
+        this.y * (dt);
 };
 
 // Draw the enemy on the screen, required method for game
@@ -71,8 +83,21 @@ var Player = function() {
 // Now instantiate your objects. 
 
 // Place all enemy objects in an array called allEnemies
-var allEnemies = [];
-allEnemies.push(new Enemy());
+var allEnemies = [
+new Enemy(-10,100),
+new Enemy(20,200),
+new Enemy(-5,300),
+];
+//you only need line 92 if the array begins empty.
+//currently you are manually storing the bugs in the array,
+//which you already had a while back.
+//
+//reference - https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/setTimeout
+// siteTimeout(
+//     function(){
+//         allEnemies.push(new Enemy())
+//     }, 2000);
+
 
 // Place the player object in a variable called player
 //the "Object" constructor creates an object wrapper for a specific value, or where no value is passed, it will create an empty object and return it.
